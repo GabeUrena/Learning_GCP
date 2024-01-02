@@ -1,2 +1,22 @@
-google cloud platform exam prep: https://www.youtube.com/watch?v=jpno8FSqpc8
+Google Cloud Platform exam prep: https://www.youtube.com/watch?v=jpno8FSqpc8
 googles training: https://www.cloudskillsboost.google/paths/19
+
+Cloud computing: The delivery of a shared pool of on-demand computing services over the public internet,
+that can be rapidly provisioned and released with minimal management effort or service provider interaction
+
+5 Characteristics of Cloud
+1. On-demand Self-Service: Provision resources automatically without requiring human interaction
+2. Broad Network Access: available over the network
+3. Resource Pooling: Pooled resources to support a multi-tenant model allowing multiple customers to 
+   share the same applications or the same physical infrastructure
+4. Rapid Elasticity: Rapidly provision and de-provision any of the cloud computing resources
+5. Measured Service: Resource usage can be monitored, controlled, and reported using metering capabilities
+
+Four Common Cloud Deployment Models
+- Public Cloud: Computing services offered by third parties provided over the public internet.
+- Multi-Cloud: Group of public Clouds together. Architecture replicated over multiple cloud deployments.
+      - Great for disaster prevention
+      - the infrastructure of the public clouds can not be fully utilized, Google's unique features can't be replicated by AWS
+- Private Cloud: architecture stored on-premise, only accessed by the business and no one else.
+- Hybrid Cloud: Private cloud and Public cloud
+     - Hybrid environment or Hybrid Network: on-premise infrastructure connected to a public cloud
