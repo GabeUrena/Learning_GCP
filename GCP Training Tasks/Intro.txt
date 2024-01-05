@@ -1,3 +1,4 @@
 A Tour of Google Cloud Hands-on Labs 45 minutes
 
--Learning how to utilize Googles training platform Labs.
+-Learning how to utilize Google's training platform Labs.
+- Learning how to navigate Google Cloud service menus
