@@ -2,3 +2,32 @@ A Tour of Google Cloud Hands-on Labs 45 minutes
 
 -Learning how to utilize Google's training platform Labs.
 - Learning how to navigate Google Cloud service menus
+
+
+Google Cloud Offerings Categories:
+
+Compute, Storage, Big Data, Machine Learning, Application Services.
+
+Cloud
+- Customers get computing resources that are on demand and self-service
+- Customers get access to those resources over the Internet, from anywhere
+- The provider of those resources allocates them to users out of that pile
+- Resources are elastic which means they are flexible so customers can be
+- Customers pay only for what they use or reserve as they go.
+
+Infrastructure as a service LaaS:
+- Provides raw computer, storage, and network capability virtually into resources that are similar to physical data centers
+Platform as a service PaaS:
+- bind code to libraries that provide access to the infrastructure that the application needs.
+
+Serverless technology:
+Let you focus on coding rather than server configurations.
+- Cloud functions (Manages event-driven code as a pay-as-you-go service) and Cloud run (allows customers to deploy their containerized microservices-based application, in a fully managed environment.)
+
+Software as a service SaaS:
+Software stored online.
+
+Zone is an area where Google Cloud resources are deployed.
+Multi-region: replicate the database's data not just in multiple zones but across multiple regions. Read date with low latency.
+
+Because Google's stack is mainly open source, they let you host your services elsewhere if you no longer want Google Cloud.
