@@ -1,0 +1,59 @@
+Gcp Recourse Hierarchy
+level 1: Resources - VMs Cloud storage buckets, Tables in BigQuery, anything else in Google Cloud
+Level 2 Projects - Resources are organized as projects
+Level 3: Folders - projects can be organized in folders
+level 4: Organization Node - All the project folders and resources in your company.
+
+Policies are placed to levels 2-4 and are inherited downward.
+
+1 Projects are separate entities under the Organization node
+2 Projects hold resources, each of which belongs to just one Project
+3 Projects can have different owners and users
+4 Projects are billed and managed separately.
+
+Google Cloud project attributes
+Project ID - Globally unique and immutable after creation
+Project Name - Needs not be unique, Mutable, Chosen by you
+Project Number - Globally unique, Assigned by Google Cloud, immutable
+
+Folders let you group projects under an organization in a hierarchy and can delegate administrative rights so that they can work independently.
+
+
+Identity and Access Management (IAM)
+Administrators can apply policies that define who can do what and on which recourses.
+A "Who" is called a "principle", They each have their identifier, usually an email.
+
+The "Can do what" part of an IAM policy is defined by a role,
+An IAM role is a collection of permissions
+When you grant a role to a principal, you grant all the permissions that the role contains.
+
+Example: To manage VM instances in a project you must be able to create, delete start stop, and change VMs.
+so these permissions are grouped into a role
+
+Different IAM Roles
+Basic IAM Role
+- When applied to a project, they affect all recourses in that project
+- Owner, Editor, Viewer, Billing Admin
+- warning! If several people are working together on a project that contains sensitive data, basic roles are probably too broad.
+Predefined IAM Role
+- Specific Google Cloud services offer sets of predefined roles, they even define where those roles can be applied.
+- In Compute Engine you have the InstanceAdmin role that lets you perform a specific set of predefined actions. If you need another
+  role with even more actions you create a custom role.
+Custom IAM role
+- Define permissions and let roles do specific actions.
+- You'll need to manage the permissions that define the custom role you've chosen, people opt for the defined roles instead
+- Custom roles can only be applied to either the project level or organization level.
+
+Service Accounts***********
+Do you want to give permissions to a Compute Engine VM instead of a person? Use Service Accounts
+If you have an application running in a VM and need to store data on the Cloud Storage, but only want to grant access to the VM, 
+  you can create a service account to authenticate that VM to Cloud Storage
+Service accounts are named with an email address and use Cryptographic keys to access resources.
+
+Service accounts need to manage service accounts. A service account is a resource, they can apply IAM policies granting different people separate roles.
+
+Cloud Identity*********
+With the Cloud Identity tool Organizations can define policies and manage their users and groups using the Google Admin Console.
+- Admins log in and manage Google Cloud resources using the same user names and passwords they already used in existing Active Directory or LDAP systems.
+- Free edition and premium edition that provides capabilities to manage mobile devices.
+- Cloud Ident
