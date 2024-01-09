@@ -56,4 +56,14 @@ Cloud Identity*********
 With the Cloud Identity tool Organizations can define policies and manage their users and groups using the Google Admin Console.
 - Admins log in and manage Google Cloud resources using the same user names and passwords they already used in existing Active Directory or LDAP systems.
 - Free edition and premium edition that provides capabilities to manage mobile devices.
-- Cloud Ident
+
+Interacting with Google Cloud******
+1 Google Cloud Console: GUI To manage control over your resources/budgets. You can deploy, scale, and diagnose production issues in a web-based interface.
+2 Cloud SDK and Cloud Shell: a set of tools used to manage resources and applications hosted on Google Cloud
+  - Google Cloud CLI- provides the main command-line interface for Google Cloud products and services
+  - cloud storage - access to Cloud Storage from the command line
+  - bq - A command-line tool for BigQuery
+3 APIs
+4 Google Cloud app
+
+
