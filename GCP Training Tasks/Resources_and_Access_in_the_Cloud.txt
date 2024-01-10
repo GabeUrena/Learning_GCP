@@ -63,7 +63,13 @@ Interacting with Google Cloud******
   - Google Cloud CLI- provides the main command-line interface for Google Cloud products and services
   - cloud storage - access to Cloud Storage from the command line
   - bq - A command-line tool for BigQuery
-3 APIs
-4 Google Cloud app
+  - Cloud shell provides command-line access to cloud resources directly from a browser
+3 APIs: Could services offer APIs that allow cod to be written to control the
+ - Google provides Cloud Client and Google API Client libraries
+4 Google Cloud apps: 
+  - Start, stop, and use SSH to connect to compute Engine instances and see logs
+  - Stop and start Cloud SQL instances
+  - Administer applications deployed on the App Engine
+  - up-to-day billing info for products and alerts for budgeting
 
 
