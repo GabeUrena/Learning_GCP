@@ -72,4 +72,7 @@ Interacting with Google Cloud******
   - Administer applications deployed on the App Engine
   - up-to-day billing info for products and alerts for budgeting
 
+Virtual Machines and Networks in the Cloud******************
+
+
 
