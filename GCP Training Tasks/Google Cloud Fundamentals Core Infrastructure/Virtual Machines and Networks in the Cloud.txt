@@ -1,0 +1,69 @@
+Virtual Machines and Networks in the Cloud******************
+VPC: a secure, individual, private cloud computing model hosted remotely on public cloud
+  - Google VPC networks are global and can have subnets in any Google Cloud region worldwide
+  - VPC neworks connect Google Cloud resources to each other and to the internet
+    - size of subnet can be increased by expanding the range of ip addresses assigned to it.
+Compute Engine
+  - Can create and run virtual machines on Googles infastructure.
+  - Can be configured much like a physical server
+  - Doesn't require a particular option or machine type to get high throughput between processing and persistent disks
+  - You can choose your machine properties using a set of predefined or custom machine types.
+
+Compute Engine has Autoscaling
+This lets you automatically adjust to the work load. 
+
+Virtual machine
+  - Can be created throught the GC Console, the GC CLU, or the Compute Engine API
+  - Can run different OS
+
+VPC features
+Routing Tables - built in, no router provisioning or managing needed
+Firewall - provided and don't need to be managed, Rules can be defined through network tags
+
+"what if your company has several Google Cloud projects, and the VPCs need to talk to each other?"
+Use VPC peering to establish a relationship between two VPCs to exchange traffic. Alternatively you can have a project utilize another VPC by configuring the VPC as a Shared VPC
+
+Cloud Load Balancing: By spreading the load, load balancing reduces the risk that applications experience performance issues.
+ - A fully distributed, software-defined managed service for all your traffic
+
+Global HTTP(S) if you need to cross reginak load balancung for a web application
+Global SSL Proxy for secure sockets layer traffic that's not HTTP, use the global SSL proxy load balancer.
+Global TCP Proxy for other TCP traffic that odesn't use SSL
+Regional if you want to load balance UDP traffic or traffic on any port number
+Reginal Internal When you want to load balance traffic inside your project, for instance, between presentation layer and   
+                 the business layer of your application
+Internal HTTP(S) managed service based on the open Source Envoy proxy. Run and scale services hehind an internal load balancing IP address.
+
+Cloud DNS: Managed DNS Service that runs on the same infrastructure as Google.
+  - Low latency, high availability, and cost-effective.
+  - The DNS informatin you publish is served from redundant locations around the world
+  - Cloud DNS is programmable. you can publish and manage millions of DNS zones and records using the Google Cloud console, command Line interface or the API
+
+edge caching: Use of caching servers to store content closer to end users
+  - You can use this system to accelerate content delivery in your application by using Cloud CDN (Content Delivery Network)
+  - Customers will experience lower latency, reduced load, and you save money.
+
+After HTTP(s) load balancing is set up you can enable Cloud CDN with a check box.
+
+ Connecting netwrks to Google VPC
+1. Start with Vitual Private Network connection over the internet and use IPsec VPN protocol to create a "tunnel" connection.
+  - to make the connection dynamic you use Cloud Router
+    - Cloud Router lets other networks and Google VPC, exchange route info over the VPN using the Border Gateway Protocol
+  - If you were to add a subnet to your Google VPC, your on-premises network will automatically get routes to it.
+
+2. Direct Peering
+  - putting a router in the same public data center as a Google point of presence and using it to echange traffic between networks
+
+3. Carrier Peering
+  - Gives direct access from an on-premises network through a service provider's network
+  - not covered by google service level agreement
+4. Dedicated Interconnect
+  - Allows for one or more direct, private, connections to google
+  - If these connections have topologies that meet Google's specifications, they can be covered by an SLA of up to 99.99%
+  - These connections can be backed up by a VPN for greater reliability
+5. Partner Interconnect
+  - Great for when a data center is in a physical location that can't reach a Dedicated Interconnect colocation facility, 
+    or if the data needs don't warrent an entire 10 GigaBytre per second connection.
+  - Can be configured to support mission-critical services and applications that can tolerate some downtime
+  - Can be covered by up to a 99.99% SLA
+  
