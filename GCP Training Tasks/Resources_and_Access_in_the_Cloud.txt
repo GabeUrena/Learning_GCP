@@ -71,8 +71,3 @@ Interacting with Google Cloud******
   - Stop and start Cloud SQL instances
   - Administer applications deployed on the App Engine
   - up-to-day billing info for products and alerts for budgeting
-
-Virtual Machines and Networks in the Cloud******************
-
-
-
