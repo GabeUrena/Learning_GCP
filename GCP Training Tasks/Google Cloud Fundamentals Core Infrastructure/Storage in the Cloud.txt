@@ -1,0 +1,25 @@
+Google Cloud storage options ************
+
+Google Cloud has options for: Structued, Unstructured, Transactional, and Relational Data.
+
+Storage Cloud Storage Products:
+1. Cloud Storage
+2. CloudSQL
+3. Cloud Spanner
+4. Firestore
+5. Cloud Bigtable
+
+Object Storage: A computer data storage architecture that manages data as "objects" and not as
+                a file (file storage) and folder hierarchy or chunks of a disk block storage
+
+    - Stored in a packaged format which contains the binary form of the actual data itself. As well 
+      as relevant associated meta-data (date created, author, resources type, and permissions) and a globbally unique
+Google's cloud storage is Onject Storage.
+    - primary use is when Binary Large-Object storage is needed for online content, backups, and archived data
+      and for storage of intermediate results in processing workflows.
+
+Cloud Storage files are organized into buckets
+Buckets 
+  - Globally unique name and specific geographic location where it
+    should be stored and an ideal location for a bucket is where latency is minimized
+
