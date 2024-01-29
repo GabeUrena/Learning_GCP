@@ -50,9 +50,20 @@ Documents can contain complex nested objects in addition to subcollections
   - Firestore's NoSql queries can be then used to retrieve individual-specific documents or retrieve all the documents in a collection that match your query parameters. 
   - Queries, can include multiple, chained filters and combine filtering and sorting options, there also indexed by default so query performance is proportional to the size of the result set, not the dataset.
   - Firestore uses data synchronization to update data on any connected device, making simple one-time fetch queries efficient.
-    - It caches data that an app is actively using, so the app can write, read, listen to, and query data even if the device is offline.
+    - It caches data that an app is actively using, so the app can write, read, listen to, and query data even if 
+      the device is offline.
 Firestore leverages Google Cloud's powerful infrastructure: automatic multi-region data replication, strong consistency guarantees, atomic batch operations, and real transaction support.
 COST - Firestore charges you for reading, writing, and deleting documents, Queries, which are counted as one document read, the amount of database storage used, and the amount of network bandwidth used.
-  -Ingress is free and 10GiB of free network egress per month.
+  - Ingress is free and 10GiB of free network egress per month.
 
-Cloud Bigtable
+Cloud Bigtable ************
+  - Google's NoSQL Big data database service. The same database that powers search, analytics, maps, and Gmail.
+  - Bigtable is designed to handle massive workloads at consistently low latency and high throughput.
+  - So it's a great choice for both operational and analytical applications including the Internet of Things, user 
+    analytics, and financial data analysis.
+Customers pick Bigtable if:
+  - They work with more than 1TB of semi-structured or structured data
+  - Data is fast with high throughput, or it's rapidly changing
+  - They work with NoSQL data
+  - They work with big data, running asynchronous batch or synchronous real-time processing on the data
+  - They run machine learning algorithms on the data
