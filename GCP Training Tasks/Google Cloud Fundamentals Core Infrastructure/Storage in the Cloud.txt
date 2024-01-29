@@ -1,6 +1,6 @@
 Google Cloud storage options ************
 
-Google Cloud has options for: Structured, Unstructured, Transactional, and Relational Data.
+Google Cloud has options for Structured, Unstructured, Transactional, and Relational Data.
 
 Storage Cloud Storage Products:
 1. Cloud Storage
@@ -23,3 +23,36 @@ Buckets
   - Globally unique name and specific geographic location where it
     should be stored and an ideal location for a bucket is where latency is minimized
 
+Cloud SQL********
+MySQL, PostgreSQL, and SQL server services.
+  - no download, scales up to 64 processor cores and 400+ GB RAM with 30 TB of storage, Supports automatic replication 
+    scenarios, Supports managed backups, cost of an instance covers 7 backups, Encrypts customer data when Google's internal 
+    network and when stored in database tables, temporary files, and backups, Includes a network firewall.
+Benefit - Accessible by Google Cloud services and external services
+  - Cloud SQL can be used with App Engine using standard drivers like J for Java or MySQL DB for Python
+  - Compute Engine instances can be authorized to access Cloud SQL instances and configure the Cloud SQL instance to be in 
+    the same zone as your virtual machine.
+  - Cloud SQL also supports other applications and tools that you might use like SQL workbench, Toad, and other external          applications using standard MySQL drivers.
+
+Cloud Spanner*******
+Cloud Spanner is a fully managed relational database service that scales horizontally, is strongly consistent, and speaks SQL.
+  - SQL relatable database management system with joins and secondary indexes
+  - Built-in high-availability
+  - Strong global consistency
+  - High numbers of input/output operations per second (10,000+ reads and writes a sec)
+
+Firestore ***********
+  - Flexible
+  - Horizontally scalable
+  - NoSQL cloud database
+Firestore, data is stored in documents and then organized into collections
+Documents can contain complex nested objects in addition to subcollections
+  - Firestore's NoSql queries can be then used to retrieve individual-specific documents or retrieve all the documents in a collection that match your query parameters. 
+  - Queries, can include multiple, chained filters and combine filtering and sorting options, there also indexed by default so query performance is proportional to the size of the result set, not the dataset.
+  - Firestore uses data synchronization to update data on any connected device, making simple one-time fetch queries efficient.
+    - It caches data that an app is actively using, so the app can write, read, listen to, and query data even if the device is offline.
+Firestore leverages Google Cloud's powerful infrastructure: automatic multi-region data replication, strong consistency guarantees, atomic batch operations, and real transaction support.
+COST - Firestore charges you for reading, writing, and deleting documents, Queries, which are counted as one document read, the amount of database storage used, and the amount of network bandwidth used.
+  -Ingress is free and 10GiB of free network egress per month.
+
+Cloud Bigtable
