@@ -1,0 +1,82 @@
+Introduction to containers ***********************
+IaaS: Share compute resources using BMs by virtualizing the hardware using virtual machines
+
+Containers: Give the independent scalability of workloads in pass and an abstraction layer of the OS and hardware is IS.
+
+As Configurable system:
+  - Customizable installation, configuration, and building
+  - Large, slow, and costly
+
+A Container:
+  - An invisible box around your code and its dependencies
+  - Has limited access to its partition of the file system and hardware
+  - Only requires a few system calls to create and starts as quickly as a process
+  - Only needs an OS kernel that supports containers and a container runtime, on each host
+  - Scales like PaaS, but gives nearly the same flexibility as IaaS
+
+The OS is virualized, its scales like pass, but gives you nearly the same flexibility as IS.
+  - Code is ultra-portable and the OS and hardware can be treated as a black box.
+
+Example: If you want to scale a web server, with a container you can do this in seconds and deploy dozens or hundreds of them depending on the size of your workload on a single host.
+         You may want to build your application using lots of containers, each performing its function like microservices. This way will make them modular, deploy easily and scale independently across a group of hosts.
+        - The host can scale up and down and start and stop containers as demand for your app changes or as hosts fail.
+
+Kubernetes ****************
+A product that helps manage and scale containerized applications
+
+Kubernetes can be bootstrapped using the Google Kubernetes engine, GKE, to save time and effort when scaling applications and workloads.
+
+Kubernetes is an open-source platform for managing containerized workloads and services
+  - It makes it easy to orchestrate many containers on many hosts. scale them as microservices and easily deploy rollouts and rollbacks.
+
+Kubernetes is a set of APIs that you can use to deploy containers on a set of nodes called clusters.
+
+The system is divided into a set of primary components that run as the control plane, and a set of nodes that run containers.
+In Kubernetes, a node represents a computing instance like a machine.
+You can describe a set of applications and how they should interact with each other, and Kubernetes determines how to make that happen.
+
+Deploying containers on nodes by using a wrapper around one or more containers is what defines a pod.
+A pod is the smallest unit in Kubernetes that you can create or deploy.
+It represents a running process on your cluster as either a component of your application or an entire app.
+
+You can only have one container per pod, however, if you have multiple containers with a hard dependency, you can package them into a single pod and share networking and storage resources between them.
+Pods:
+  - Unique network IP set of ports for your containers, and configurable options that govern how your containers should run.
+  - one way to run a container in a pod in Kubernetes is to use the kubectl run command, starting deployment with a container running inside a pod.
+A deployment represents a group of replicas of the same pod and keeps your pods running even when the nodes they run on fail.
+A deployment could represent a component of an application or even an entire app
+To see a list of the running pods in your project run the command, "kubectl get pods"
+
+Kubernetes creates a service with a fixed IP address for your pods
+In GKE, the load balancer is created as a network load balancer, any client that reaches that IP address will be routed to a pod behind the service.
+A service is an abstraction that defines a logical set of pods and a policy by which to access them,
+As deployments create and destroy pods, pods will be assigned their IP addresses, but those addresses don't remain stable over time.
+
+A service group is a set of pods that provides a stable endpoint or fixed IP address
+
+For example, if you create two sets of pods called frontend and backend, and put them behind their services, the backend pods might change, but frontend pods are not aware of thise.
+
+To scale a deployment run the "kubectl scale" command
+
+You can also use autoscaling for instance you can specify that the number of pods should increase when CPU utilization reaches a certain limit.
+
+Kubernetes comes when you work in a declarative way, instead of issuing commands, you provide a configuration file that tells Kubernetes what you want your desired state to look like, and Kubernetes determines how to do it.
+  - You use Config files.
+  - Check your deployment to make sure the proper number of replicas is running by using "kubectl get deployments" or "kubectl describe deployments"
+
+To run five replicas instead of three, all you do is update the deployment config file and run "kubectl apply" command to use the updated file.
+
+To update your application you want to update your containers first. you use "kubectl rollout" or change your deployment config file and then use "kubectly apply"
+  - New pods will be created accordingly
+
+Google Kubernetes Engine***************
+GKE is a Google-hosted managed Kubernetes service in the cloud
+  - GKE environment consists of multiple machines, specifically compute engine instances, grouped to form a cluster.
+  - You can create a Kubernetes cluster with the Kubernetes engine by using a Google Cloud Console or the gcloud command that's provided by the Cloud Software Development Kit.
+GKE clusters can be customized and they support different machine types, number of nodes, and network settings.
+Running a GKE cluster comes with the benefits of advanced cluster management features that Google Cloud provides.
+  - This includes Google Cloud's load balancing for compute engine instances, node pools to designate subsets of nodes within a cluster for additional flexibility, automatic scaling of your cluster's node instance count,
+    automatic upgrades for your cluster's node software, node auto-repair to maintain node health and availability, and logging and monitoring with Google Cloud's operation suite for visibility into your cluster.
+    To start up Kubernetes is on a cluster in GKE, all you do is run this command gcloud container clusters create k1.
+
+
