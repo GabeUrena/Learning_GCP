@@ -67,3 +67,24 @@ Customers pick Bigtable if:
   - They work with NoSQL data
   - They work with big data, running asynchronous batch or synchronous real-time processing on the data
   - They run machine learning algorithms on the data
+Cloud Bigtable can interact with third-party clients and other Google Cloud services.
+  - Using APIs data can be read from and written to Cloud BigTable through a data science layer Managed VMs, the HBase REST server, or a Java server using the HBase client
+      - This is typically used to server data to applications, dashboards, and data services.
+  - Data can be streamed through frameworks like data flow streaming, spark streaming, and storm
+     - If streaming isn't an option, data can be read from and written to Cloud Bigtable through batch processes like Hadoop MapReduce, Dataflow, or Spark.
+
+Comparing storage option *****************
+1. Cloud Storage
+  - Best for storing immutable blobs larger than 10 MB: Capacity Petabytes, max unit size 5TB per object
+2. CloudSQL
+  - Best for Full SQL Support for an online transaction processing system: Capacity Up to 64 TB
+    - Web frameworks and existing applications 
+3. Cloud Spanner
+  - Best for Full SQL Support for an online transaction processing system: Capacity Petabytes
+    - Horizontal Scalability
+4. Firestore
+  - Massive scaling and predictability together with real-time query results and offline query support: Capacity Terabytes, Max unit size of 1 MB per entity
+5. Cloud Bigtable
+  - Storing large amounts of structured objects: Capacity Petabytes, Max unit size of 10 MB p/cell. 100 MB p/row
+  - Does not support SQL queries and multi-row transactions
+  - Analytical data with heavy read and write events
