@@ -1,0 +1,47 @@
+Cloud Run***********
+Cloud Run: is a managed compute platform that runs stateless containers via web requests or Hub sub-events
+  - Serverless
+  - Fast
+Removes all infrastructure management tasks so you can focus on developing applications
+  -Built on Knative, an open API and runtime environment built on Kubernetes.
+ It can be fully managed on Google Cloud, on Google Kubernetes Engine, or anywhere Knative runs
+Automatically scales up and down from zero almost instantaneously. It charges only for the resources used calculated down to the nearest 100 milliseconds
+Cloud Run step process:
+1. Write your code: This application should start a server that listens for web requests
+2. You build and package your application into a container image.
+3. The container image is pushed to the artifact registry, where Cloud Run will deploy it.
+  - You will get a unique HTTPS URL back when you deploy your container image.
+  - Cloud Run starts your containers on demand to handle requests and ensures that all incoming requests are handled by dynamically adding and removing containers.
+
+For some use cases, a container-based workflow is great because it gives you a great amount of transparency and flexibility.
+
+Cloud Run lets you turn source code into an HTTPS endpoint and lets your bender make sure your container image is secured, well-configured, and built consistently.
+  - You can use a container workflow as well as a Source-based workflow.
+The source-based approach will deploy source code instead of a container image
+Cloud run then builds the source and packages the application into a container image
+  - It does this using Buildpacks an open-source project
+Cloud Run handles HTTPS serving for you.
+  - You worry about handling web requests and Cloud run handles adding the encryption.
+
+Cost:
+Pay for the system resources you use while a container is handling requests with a granularity of 100 milliseconds.
+  - Small fee for every one million requests you serve.
+  - Price of container time increases with CPU and Memory 
+  - Can run any binary as long as it's compiled for Linux 64-bit
+Cloud Run can run web apps written using Java, Python, Node.js, PHP, Go, C++
+  - Also in Cobol, Haskell, and Perl
+  - as long as your app handles web requests.
+
+Development in the cloud *******************
+Example: Applications have multiple functions, for instance, let users upload images. Those images might need to be processed in different ways like converting to a standard format,
+         a thumbnail into a different size, and storing each new file in a repository.
+Cloud Functions, you write a single-purpose function that completes the necessary image manipulations and then arranges for it to automatically run whenever a new image is uploaded.
+Cloud Function is a lightweight, event-based, asynchronous computing solution that allows you to create small, single-purpose functions that respond to cloud events without the need to 
+    manage a server or a runtime environment. These functions can be used to construct application workflows from individual business logic tasks.
+
+Cloud Functions can connect and extend Cloud Services your build to the nearest 100 milliseconds, but only while your code is running.
+
+Cloud Functions supports writing source code in many programming languages.
+  - Node, JS, Python, Go, Java, Net Core, Ruby and PHP.
+
+Events from Cloud Storage and PubSub can trigger Cloud Functions asynchronously or you can use HTTP invocation for synchronous execution.
