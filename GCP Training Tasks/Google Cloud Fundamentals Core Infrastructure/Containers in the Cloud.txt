@@ -14,7 +14,7 @@ A Container:
   - Only needs an OS kernel that supports containers and a container runtime, on each host
   - Scales like PaaS, but gives nearly the same flexibility as IaaS
 
-The OS is virualized, its scales like pass, but gives you nearly the same flexibility as IS.
+The OS is virtualized, it scales like a pass, but gives you nearly the same flexibility as IS.
   - Code is ultra-portable and the OS and hardware can be treated as a black box.
 
 Example: If you want to scale a web server, with a container you can do this in seconds and deploy dozens or hundreds of them depending on the size of your workload on a single host.
@@ -54,7 +54,7 @@ As deployments create and destroy pods, pods will be assigned their IP addresses
 
 A service group is a set of pods that provides a stable endpoint or fixed IP address
 
-For example, if you create two sets of pods called frontend and backend, and put them behind their services, the backend pods might change, but frontend pods are not aware of thise.
+For example, if you create two sets of pods called frontend and backend, and put them behind their services, the backend pods might change, but frontend pods are not aware of this.
 
 To scale a deployment run the "kubectl scale" command
 
