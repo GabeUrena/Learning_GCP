@@ -1,16 +1,21 @@
 Loosely Coupled Microservices and API Gateways ****** 
 
-When building for the Cloud, Applications must be buiilt for Global Reach, Scalability and High Availability, and Security.
-  - Resposive and accessible across the world
-  - Handle high traffic volumes
+When building for the Cloud, Applications must be built for Global Reach, Scalability High Availability, and Security.
+  - Responsive and accessible across the world
+  - Handle high-traffic volumes
   - Application Architecture should Leverage the capabilities of the underlying cloud platform to scale elastically in response to changes in load.
-  - Impliment security best practices, depending on use case, you might want to isolate your user data in a specifiic region for security and compliance.
+  - Implement security best practices, depending on the use case, you might want to isolate your user data in a specific region for security and compliance.
 
 Use Git for version control
 
-Dont store Dependencies in the code, rather, declare your dependencies with their versions and install them using a dependency manager.
-  - For instance, a Node.js app, you can declare dependencies in a .json file and install them later using the NPM install command.
+Don't store Dependencies in the code, rather, declare your dependencies with their versions and install them using a dependency manager.
+  - For instance, in a Node.js app, you can declare dependencies in a .json file and install them later using the NPM install command.
 
-Seperate configuration settings from your code.
+Separate configuration settings from your code.
 Don't store configuration settings as constants in the source code, rather, store them as environment variables.
-  - This lets you modigy settings between development test and production environments.
+  - This lets you modify settings between development test and production environments.
+
+Implement microservices in your application instead of a monolithic application.
+  - Service boundaries match business boundaries
+  - Codebase is modular
+  - Each service can be independently updated, deployed, and scaled.
