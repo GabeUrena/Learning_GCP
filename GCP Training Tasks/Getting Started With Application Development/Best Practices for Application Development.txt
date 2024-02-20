@@ -19,3 +19,28 @@ Implement microservices in your application instead of a monolithic application.
   - Service boundaries match business boundaries
   - Codebase is modular
   - Each service can be independently updated, deployed, and scaled.
+
+Perform backend operations asynchronously, use event driven processing where possible, for instance. if your application  
+  processes images that are uploaded by a user, you can use a Google Cloud Storage bucket to store the uploaded images.
+
+An intermediate component such as a message queue can be used to imploment loose coupling, performing asynchronous processing, and buffer requests in case of spikes in traffic.
+
+- Implement stateless components for scalability
+- Design each application so that it focuses on compute tasks only
+- Applicaiton components should start up quickly to enable efficient scaling, and shut down gracefully when they recieve a termination signal.
+    - If your application needs to process streaming data from IoT devices, you can use a Cloud Pub Sub topic to receive the data. You then can implement Cloud functions that are triggered whenever a new piece of data comes in. Cloud Function can process, transform and store the data.
+    - Alternatively, your application can subscribe to the Pub Sub topic that receives the streaming data. Multiple instances of your application can spin up and process the messages in the topic and split the workload. These instances can automatically be shut down when there are very few messages to process.
+
+To enable elastic scaling, you can use any compute environment, such as Compute Engine with Cloud load balancing, Gogle Kubernetes engine or App Engine.
+
+You perform asynchronous operations and your database queries are doing well but your application still seem a bit slow. Solutions:
+  - Caching content can improve application performance and lower network latency.
+    - Cache application data that is frequently accessed
+  - You can use a content delivery network to cache web pages
+
+Implement API gatewats to make backend functionality available to consumer applications.
+  - You can use App Engine, GKE, or Compute Engine to run backend.
+
+Security, Reliablity and Migration****************************
+Use Federated Identity Management - Delegate user authentication to external identity providers such as Google, Facebook, Twitter, or GitHub
+  - This will minimize your effort for user administration
