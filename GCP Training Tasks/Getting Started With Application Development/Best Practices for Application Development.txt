@@ -44,3 +44,9 @@ Implement API gatewats to make backend functionality available to consumer appli
 Security, Reliablity and Migration****************************
 Use Federated Identity Management - Delegate user authentication to external identity providers such as Google, Facebook, Twitter, or GitHub
   - This will minimize your effort for user administration
+Implement Health-check endpoints for each service
+  - check health of all dependencies and infrastructure components required for the service to function properly.
+    - Example, endpoint handlers can check the performance and availabilty of storage, database, and network connections required by the service.
+    - The endpoint should return an HTTP response code of 200 for a successful health check. If it fails it can return a 503 or a more specific response code depending on the error
+Determine which dependencies are critical enough to result in a health check failure.
+  - Example, 
