@@ -20,33 +20,70 @@ Implement microservices in your application instead of a monolithic application.
   - Codebase is modular
   - Each service can be independently updated, deployed, and scaled.
 
-Perform backend operations asynchronously, use event driven processing where possible, for instance. if your application  
+Perform backend operations asynchronously, and use event-driven processing where possible, for instance. if your application  
   processes images that are uploaded by a user, you can use a Google Cloud Storage bucket to store the uploaded images.
 
-An intermediate component such as a message queue can be used to imploment loose coupling, performing asynchronous processing, and buffer requests in case of spikes in traffic.
+An intermediate component such as a message queue can be used to implement loose coupling, perform asynchronous processing, and buffer requests in case of spikes in traffic.
 
 - Implement stateless components for scalability
-- Design each application so that it focuses on compute tasks only
-- Applicaiton components should start up quickly to enable efficient scaling, and shut down gracefully when they recieve a termination signal.
-    - If your application needs to process streaming data from IoT devices, you can use a Cloud Pub Sub topic to receive the data. You then can implement Cloud functions that are triggered whenever a new piece of data comes in. Cloud Function can process, transform and store the data.
-    - Alternatively, your application can subscribe to the Pub Sub topic that receives the streaming data. Multiple instances of your application can spin up and process the messages in the topic and split the workload. These instances can automatically be shut down when there are very few messages to process.
+- Design each application so that it focuses on computing tasks only
+- Application components should start up quickly to enable efficient scaling, and shut down gracefully when they receive a termination signal.
+    - If your application needs to process streaming data from IoT devices, you can use a Cloud Pub-Sub topic to receive the data. You then can implement Cloud functions that are triggered whenever a new piece of data comes in. Cloud Function can process, transform, and store the data.
+    - Alternatively, your application can subscribe to the Pub Subtopic that receives the streaming data. Multiple instances of your application can spin up and process the messages in the topic and split the workload. These instances can automatically be shut down when there are very few messages to process.
 
-To enable elastic scaling, you can use any compute environment, such as Compute Engine with Cloud load balancing, Gogle Kubernetes engine or App Engine.
+To enable elastic scaling, you can use any computing environment, such as Compute Engine with Cloud load balancing, Google Kubernetes engine, or App Engine.
 
-You perform asynchronous operations and your database queries are doing well but your application still seem a bit slow. Solutions:
+You perform asynchronous operations and your database queries are doing well but your application still seems a bit slow. Solutions:
   - Caching content can improve application performance and lower network latency.
     - Cache application data that is frequently accessed
   - You can use a content delivery network to cache web pages
 
-Implement API gatewats to make backend functionality available to consumer applications.
-  - You can use App Engine, GKE, or Compute Engine to run backend.
+Implement API gateways to make backend functionality available to consumer applications.
+  - You can use App Engine, GKE, or Compute Engine to run the backend.
 
-Security, Reliablity and Migration****************************
+Security, Reliability and Migration****************************
 Use Federated Identity Management - Delegate user authentication to external identity providers such as Google, Facebook, Twitter, or GitHub
   - This will minimize your effort for user administration
 Implement Health-check endpoints for each service
-  - check health of all dependencies and infrastructure components required for the service to function properly.
-    - Example, endpoint handlers can check the performance and availabilty of storage, database, and network connections required by the service.
+  - check the health of all dependencies and infrastructure components required for the service to function properly.
+    For example, endpoint handlers can check the performance and availability of storage, database, and network connections required by the service.
     - The endpoint should return an HTTP response code of 200 for a successful health check. If it fails it can return a 503 or a more specific response code depending on the error
 Determine which dependencies are critical enough to result in a health check failure.
-  - Example, 
+  For example, consider a UI service where the displayed recommendations are on one section of the webpage. The UI is designed to hide the recommendations section if the engine powering it is down. If the engine fails you can report that failure to the health check.
+
+Load Balancer and Stackdriver monitoring can periodically send requests to the health check endpoint
+  - Load Balancers use health checks to determine if an application instance is healthy and is capable of receiving traffic.
+  - Stackdriver monitoring sends you an alert when the health check fails beyond the threshold you've defined.
+
+Set up logging and monitor your application's performance.
+  - dont manage log files in your application. Write to an event stream such as standard out and let the underlying infrastructure collate all events for later analysis and storage.
+  - Google Stackdriver, you can debug, set up error monitoring, log and log-based metrics, trace requests across services, and monitor applications running in a multi-cloud environment.
+
+Resources can sometimes become unavailable due to transient network errors.
+  - in this case, applications should implement retry logic with exponential back-off and fail gracefully if the errors persist.
+  - Google Cloud Client Libraries automatically retry failed requests.
+If errors are long-lasting do not waste CPU cycles attempting to retry failed requests.
+  - Implement a circuit breaker and handle this failure.
+If an error is propagated back to the user, gracefully degrade the app instead of showing an error message.
+  - For instance, if a UI app with a recommendation section. If that section's engine failed, gracefully degrade that part of the website instead of telling the user that that engine has failed.
+
+Data sovereignty and compliance requirements, some regions and industry segments have strict compliance requirements for data protection and consumer privacy. Review the region where your users and services will be located.
+
+Executing functional and performance tests, execute high availability testing as well.
+
+Tabletop tests - Discuss how they would respond in failure scenarios but don't perform any real actions.
+
+Perform Canary testing or blue-green deployments on your production environment.
+
+Test during maintenance, test for connectivity problems, on-premise data center or other cloud provider failure, GCP zonal or regional failure.
+
+Test rollback procedures and check for data corruption.
+
+use redundant routes to reroute traffic and notify appropriate people of any failures.
+
+Use DevOps models or the CICD pipeline.
+
+Version control using git, Jenkins automatically detects commits, triggers builds, and runs unit tests.
+
+Using the Sec DebOps approach, you can automate security checks, such as confirming whether you're using the most secure versions of third-party software and dependencies, you're scanning.
+
