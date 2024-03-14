@@ -1,0 +1,52 @@
+Getting Started with Google Cloud Development **********
+Google Cloud API can be called by using HTTP requests with JavaScript Objects Notation, or JSON, payloads. 
+  - Can be called using Google Remote Procedure Call, or gRPC, requests
+gRPC is an open-source, remote procedure call framework that can be run anywhere and uses an efficient binary requests structure.
+To call Cloud APIs, the caller must supply application credentials
+
+The Google Cloud SDK is used to interact with Google Cloud products and services.
+SDK Features: Command line tools and Language-specific Cloud Client Libraries.
+  - These tools and libraries use Cloud APIs to communicate with Google Cloud.
+
+The Google Cloud Command Line Interface, or gcloud CLI, provides tools to manage Google Cloud services from the command line or in automated scripts.
+These tools provide the functionality of the Cloud APIs in an easy-to-use command line interface.
+  - They automate the process of sending credentials in the Cloud API calls and combine multiple Cloud API calls when required ot complete a single common task
+  - You can use gcloud CLI to perform most tasks allowed by the Cloud APIs
+     - You can manage virtual machines or deploy applications to run on Google Cloud.
+
+gsutil can be used to:
+Create and delete buckets
+Upload, download, and delete objects
+List buckets and objects
+Move, copy, and rename objects.
+Manage access for objects and buckets.
+
+bq is a command-line tool for BigQuery
+used for:
+Manages datasets, tables, and other BigQuery entities
+Run Queries - Main use.
+
+Cloud Client libaries:
+Are simpler to use than making direct API calls
+Are the recommended methods for making Cloud API requests for applications
+Provide an optimized developer experience.
+Use each language's natural conventions and style.
+Receive performance benefits from gRPC APIs
+
+Creating a Cloud Storage bucket in Python
+
+#import the Cloud Client Library for Cloud Storage
+from google.cloud import storage
+def create_bucket(name):
+  #Instantiate a client
+  storage_client = storage.Client()
+  #Specify the bucket name
+  bucket = storage_client.bucket(name)
+  #Specify the storage class
+  bucket.storage_class = "NEARLINE"
+  #Create the bucket
+  new_bucket = storage_client.create_bucket(bucket, location="us")
+  return new_bucket
+
+
+
