@@ -48,5 +48,17 @@ def create_bucket(name):
   new_bucket = storage_client.create_bucket(bucket, location="us")
   return new_bucket
 
+Initialized by running 'gcloud init'.
+uses: Install and manage components, Use the gcloud CLI interactive shell, Script gcloud CLI commands
 
+Cloud Shell provides command-line access to a free admin VM
+- Browser-based access to a temporary virtual machine
+  - 5 GB of persistent disk storage
+  - The Google Cloud SDK is pre-installed
+Built-in code editor and authorization to Google Cloud Console projects and resources
 
+IDE plugins make it easier to create, deploy, and debug cloud-native applications.
+Available for VSCode, JetBrains IDEs (including intelliJ), and Cloud Shell Editor.
+Streamline common workflows
+Integrates with Secret Manager to securelystore sensative data
+Manage Cloud APIs and Cloud Client Libraries.
