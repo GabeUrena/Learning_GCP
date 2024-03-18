@@ -4,7 +4,7 @@ Google Cloud API can be called by using HTTP requests with JavaScript Objects No
 gRPC is an open-source, remote procedure call framework that can be run anywhere and uses an efficient binary requests structure.
 To call Cloud APIs, the caller must supply application credentials
 
-The Google Cloud SDK is used to interact with Google Cloud products and services.
+The Google Cloud SDK interacts with Google Cloud products and services.
 SDK Features: Command line tools and Language-specific Cloud Client Libraries.
   - These tools and libraries use Cloud APIs to communicate with Google Cloud.
 
@@ -12,7 +12,7 @@ The Google Cloud Command Line Interface, or gcloud CLI, provides tools to manage
 These tools provide the functionality of the Cloud APIs in an easy-to-use command line interface.
   - They automate the process of sending credentials in the Cloud API calls and combine multiple Cloud API calls when required ot complete a single common task
   - You can use gcloud CLI to perform most tasks allowed by the Cloud APIs
-     - You can manage virtual machines or deploy applications to run on Google Cloud.
+     - You can manage virtual machines or deploy applications on Google Cloud.
 
 gsutil can be used to:
 Create and delete buckets
@@ -57,8 +57,23 @@ Cloud Shell provides command-line access to a free admin VM
   - The Google Cloud SDK is pre-installed
 Built-in code editor and authorization to Google Cloud Console projects and resources
 
-IDE plugins make it easier to create, deploy, and debug cloud-native applications.
+IDE plugins make creating, deploying, and debugging cloud-native applications easier.
 Available for VSCode, JetBrains IDEs (including intelliJ), and Cloud Shell Editor.
 Streamline common workflows
-Integrates with Secret Manager to securelystore sensative data
+Integrates with Secret Manager to securely store sensitive data
 Manage Cloud APIs and Cloud Client Libraries.
+
+Cloud Clode for Kurbernetes
+Run and debug Kubernetes applications in a local cluster or on Google Kubernetes Engine (GKE)
+Visualize and manage Kubernetes resources by using Kubernetes Explorer.
+YAML authoring assistance provides autocomplete and inline documentation for Kubernetes configuration files
+
+Cloud Code works with Cloud Run
+Run your service and debug locally with Cloud Run Emulator
+Deploy apps to Cloud Run from the IDE
+Manage Cloud Run services with Cloud Run Explorer.
+
+Emulators for Google Cloud services
+Use 'gcloud beta emulator' to install and manage emulators
+Switch from using a local emulator to the Google Cloud service without changing the application code
+Develop your applications without consuming project resources.
