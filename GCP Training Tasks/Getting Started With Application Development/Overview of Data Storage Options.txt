@@ -1,0 +1,84 @@
+Cloud Storage, Datastore, Cloud Bigtable, Cloud SQL, and Cloud Spanner*************
+Cloud Storage is a unified object storage for developers and enterprises that allow you to serve, analyze and archive data
+- Objects access via HTTP requests and Object names is the only key.
+There's onject meta data, but the object itself is treated as just bytes with no structure.
+
+Firestore is a fast, fully managed, serverless, NoSQL, document database built for automatic scaling, high performance and ease of application development
+- Firestore in native mode provides features such as a strong consistent storage layer, a collection and document based data model, real time upgrades and offline features and mobile and Web client libraries.
+
+Datastore (Firestore in Datastore mode)
+-Fully managed NoSQL
+-Scalable
+-No mobile and web client libraries
+-No real-time and offline features
+Ideal for:
+Server applcations, Semi-structured application data, Durable key-balue data, Hierarchical data, Managing multiple indexes, Transactions.
+
+Cloud Bigtable
+-High performance wide column NoSQL database service
+-Sparsely populated table
+-Can scale to billions of rows and thousands of columns
+-Can store TB to PB of data
+Ideal for:
+Operational Application, Analytical applications, Storing large amounts of single-keyed data, MapReduce operations
+
+Cloud SQL
+-Managed service (Replication, failover, backups)
+-MySQL, PostgresSQL, and SQL Server
+-Replational database service
+-Proxy allows for secure access to your Cloud SQL Second Generation instances without setting Allow rules.
+Ideal for:
+Web frameworks, Structured data, OLTP workloads, Applications using MySQL/PGS
+
+Cloud Spanner
+-Mission-critical relational database service
+-Transactional consistency
+-Global scale
+-High availability
+-Multi-region replication
+-99.999% SLA
+Ideal for:
+Mission-critical applications, High transactions, Scale and consistency requirements
+
+BigQuery
+-Low-cost enterprise data warehouse for analytics
+-Fully-managed
+-Petabyte scale
+-Fast response times
+-Serverless
+Ideal for:
+Online Analytical Processing (OLAP) workloads, Big data exploration and processing, Reporting via Business Intelligence (BI) tools
+
+Run Microsoft SQL Server on Google Cloud
+-You can run SQL Server images on Google Compute Engine
+-Compite Engine VMs can be preloaded with SQL Server
+-Licensing from Microsoft is included utomatically
+-Supported versions include:
+  - SQL Server Standard, SQL Server Web, SQL Server Enterprice
+
+Storage option for mobile********
+Cloud Storage for Firebase
+-Mobile and web access to Google Cloud Storage
+-Serverless third-party authentication and authorization
+ideal for:
+Images, pictures and videos, Objects and blobs, Unstructured data
+
+Firebase Realtime Database
+-Realtime
+-NoSQL JSON database
+ideal for:
+Mobile and web applications, Realtime
+
+Firebase Hosting
+-Web and mobile content hosting
+-Production-grade
+ideal for:
+Atomic releases management, JS app suport, Firebase integration
+
+Memorystore*********
+Cache your application data
+-Memorystore automates comple tasts for Redis and Memchached caching engines
+-Fully protocol compatible with each engine
+-Ideal for high-performance, scalable web applications, gaming, and stream processing.
+-Fully managed service.
+-Google-grade security.
