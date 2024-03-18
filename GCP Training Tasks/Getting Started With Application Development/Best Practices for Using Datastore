@@ -1,0 +1,114 @@
+Datastore Concepts and Indexes********
+Datastore = Firestore in Datastore mode
+-Fully backward compatible with the original Datastore but uses Firestore's improved storage layer.
+-The Datastore page is used to manage the database
+- A project can have only a Firestore Native mode database or Datastore mode database, but not both.
+How to decide:
+  - Choose Datastore mode when creating a new server application
+     - Automatically scales to millions of writes per second.
+  - Choose Native mode for new mobile and web apps or when requiring real-time and offline features
+     - Automatically scales to millions of concurrent clients.
+
+Datastore concepts
+-Data objects are called entities.
+-Entities are made up of one or more properties.
+-Each entity has a key that uniquely identifies its composed of: Namespace, Entity kind, Identifier (either a string or numeric ID), Ancestor Path (optional)
+-Operations on one more entity are called transactions.
+
+Datastore has two types of indexes:
+Built-in indexes:
+  - Automatically pre-defined indexes for each property of each entity kind
+  - Are suitable for simple types of queries
+Composite indexes:
+  - Index multiple property values for indexed entity
+  - Support complex queries
+  - Are defined in an index configuration file
+
+Create and delete your composite indexes
+  - Defined in a configuration file named index.yaml
+  - To create a composite index:
+     -Add index definition to index.yaml
+     -Run gcloud datastore indexes create
+  - To delete a composite index:
+     -Remove indexes you no longer need from index.yaml
+     -Run gcloud datastore indexes cleanup
+
+Datastore as compared to relational databases
+Datastore:
+Is designed to automatically scale to very large data sets.
+Doesn't support join operations, inequality filtering on multiple properties, or filtering on data based on the results of a subquery.
+Doesn't require entities of the same kind to have a consistent property set.
+
+Design Considerations and Shading******************
+Design your applications using Cloud Datastore with these considerations
+- Use UTF-8 characters for:
+   - Namespace names, Kind names, Property names, Key names
+- Avoid forward slash(/) in:
+   - Kind names
+   - Custom key names
+EXAMPLE
+key = client.key('Task','sample_task') CORRECT
+key = client.key('Task','sample/task') WRONG
+
+Sharding to increase the rate of writes
+-Datastore will shard entities automatically.
+-You can shard manually if the number of writes exceeds Datastore limits
+
+Shard counters to avoid contention with high writes
+- Reduce contention by building a sharded counter, breaking the counter up into N different counters in N entitles.
+- To increment, pick a shard at random and increment its counter.
+- To retrieve the counter, read all of the sharded entities and sum their counts.
+
+Use replication to read a portion of the key range
+- Use to read a portion of the key range at a higher rate
+- You can store N copies of the same entities, allowing an N times higher rate of reads.
+
+Replication, Query Types, Transactions, and Handling Errors**********
+Remember these things when designing your application:
+Use batch operations for reads, writes, and deletes.
+Roll back failed transactions.
+Use asynchronous calls
+
+Use query types based on needs****
+Key-only:
+-Retrieve only the key
+-Return results at lower latency and cost(free)
+SELECT __key__ FROM Task
+
+Projection:
+-Retrieve specific properties from an entity
+-Retrieve only the properties included in the query filter
+-return results at lower latency and cost (free)
+SELECT priority, percent_complete FROM Task
+
+Ancestor:
+-Limits results to the specified entity and its descendants
+SELECT * FROM Task WHERE __key__ HAS ANCESTOR KEY(TaskList, 'default')
+
+Entity:
+-Retrieve an entity kind, zero or more filters, and zero or more sort orders.
+SELECT * FROM Task WHERE done = FALSE
+***
+Improve your query latency by using cursors instead of offsets
+Integer offsets:
+-Don't return skipped entities to your application, Still retrieve the entities internally, Cause your application to be billed for read operations.
+
+Query cursors:
+Retrieve a query's results in convenient batches, Don't incur the overhead of a query offset.
+
+Numeric IDs as keys
+- Do not use a negative number, Do not use the value 0
+- If you wish to manually assign numeric IDs to your entities, get a block of IDs using the allocatelds() module
+- Avoid monotonically increasing values
+
+Transactions design consideration
+-Atomic
+  - All are applied or None are applied
+-Max duration: 270 sec
+-Idle expiration: 60 sec
+Can fail when:
+-Too many concurrent modifications are attempted on the same entity.
+-A resource limit is exceeded
+-Datastore encounters an internal error.
+
+Design your application to handle errors***
