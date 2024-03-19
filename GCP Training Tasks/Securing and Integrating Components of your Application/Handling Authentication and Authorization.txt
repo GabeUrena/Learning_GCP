@@ -1,0 +1,62 @@
+IAM Concepts**************
+Cloud IAM lets you manage access control by defining who (memebers) has what access (the role for what resource)
+You can grant more granular access to Google Cloud resources using the security principle of least privilege. Only grant access to resourecs that are necessary.
+
+Member Types:
+-Google account
+    - Developer, Admin or a person who interacts with Google Cloud
+    - an email accociated with a google account such as gmail.com address can be an identity
+-Service account
+    - Belongs to an application instead of an individual and user
+-Google group
+    - A name collection of Google accounts and service accounts.
+    - Convienient to apply an access policy to a collection of users
+    - No login credentials, you cannot use them to establish ideneity to make a request to access a resource.
+-Google Workspace domain
+    - Represents a vitual group of all the members in an organization
+    - Google Workshop customers can associate their email accounts with an internet domain name, each email account takes the form username@yourdomain.com
+    - Like groups, domains cannot be used to establish identity, but they enable convenient permission management.
+-Cloud Identity domain
+    - Represents a virtual group of all the members in an orgiization but doesn't provide access to Google Workshop applications and features
+
+You can grant access to users for a Google Cloud Resource
+Resources:
+- Google Cloud projects
+- Compite Engine instances
+- Cloud Storage Buckets
+- Pub/sub topics
+
+Operations allowed on resources
+Permissions are represented with the following syntax:
+<service>.<resource>.<verb>
+
+Example:
+pubsub.subscriptions.consume
+storage.object.list
+compute.disktype.list
+
+A role is a collection of permissions.
+Cloud IAM, a cloud API method requires the identity making the API request to have the appropriate permissions to use the resource.
+You can grant permissions by granting roles to a user, a group, or a service account.
+
+Kinds of roles: Basic, predefined, and custom.
+- Basic roles can be applied at the project level using the Cloud Console, the API, and the G Cloud command line tool.
+- Cloud IAM provides predefined roles that give granular access to specific Google Cloud resources and prevent unwanted access to other resources.
+- You can grant multiple roles to the same user
+- Custom roles are used when you need something even finer granted.
+
+If you use custom roles you need to manage the permissions that make them up.
+Custom roles can only be used a the project or organization levels, not at the folder level
+- A policy is attached to a resource and it's used to enforce access control whenever that resource is accessed
+
+A Cloud IAM policy is represented by the policy object
+ - A policy consists of a list of bindings
+ - A binding binds a list of members to a role
+
+The Cloud IAM API methods available are: set IAM u to set policies on your resources, get IAM policy, which allows you to get a policy that was previously set and test IAM permissions,
+which allows you to test whether the caller has specific permissions for a resource.
+Cloud Platform resources are organized hierarchically, where the organization node is the root node in the hierarchy.
+  - Projects are children of the organization, and the other resources are the children of the projects.
+  - Each resource has exactly one parent.
+
+IAM Best Practices.
