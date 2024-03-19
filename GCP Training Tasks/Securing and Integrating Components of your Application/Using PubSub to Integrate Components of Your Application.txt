@@ -1,0 +1,56 @@
+Use Cloud Pub/Sub to integrate components of your application
+
+Cloud Pub/Sub enables you to build your application on open multi-cloud or Hybrid architecture.
+
+Use Cloud Pub/Sub to build loosely coupled applications, fan out messages to multiple subscribers, or rapidly ingest large volumes of data.
+
+Common scenario:
+Organizations have to rapidly ingest, transform, and analyze massive amounts of data.
+  - A gaming application might receive and process user engagement and Clickstream data.
+  - In the shipping industry, IoT applications might receive large amounts of sensor data from hundreds of sensors.
+
+Pub-Sub Concepts*****
+PUB/SUB is a fully managed real-time messaging architecture
+- An application that publishes messages is called a publisher
+- Publisher creates and publishes messages on a topic
+- To receive messages, a subscriber application creates a subscription to a topic
+- A subscription can use either the push or pull method for message delivery.
+- The subscriber-only receives messages that are published after the subscription is created. 
+- After receiving or processing each pending message, the subscriber sends an acknowledgment back to the Pub/Sub service
+- Pub/sub removes acknowledged messages from the subscription queue of messages
+- If the subscriber doesn't acknowledge a message before the acknowledgment deadline, Pub/Sub will resend the message to the subscriber
+- Pub/Sub delivers each message to each subscriber at least once.
+* Pub/Sub enables loosely coupled integration between the application components, acts as a buffer to handle spikes in data volume, and also supports other use cases.
+
+Pub/Sub supports pull and push subscriptions
+Pull subscription
+ - The subscriber explicitly calls the pull method to request messages for delivery
+ - Pub/Sub returns a message and acknowledgment ID.
+ - To acknowledge receipt, the subscriber invokes the acknowledged method by using the acknowledgment ID
+In a Pull subscription model, the subscriber could be Dataflow or any application that uses cloud-client libraries to retrieve messages
+ - The subscriber controls the rate of delivery
+ - A subscriber can modify the acknowledgment deadline to allow more time to process messages
+ - To process messages rapidly multiple subscribers can pull from the same subscription.
+ - The pull subscription model enables batch delivery and acknowledgments as well as massively parallel consumption
+ - Use the pull subscription model when you need to process a very large volume of messages with high throughput
+Push Subscription
+ - Doesn't need to implement Google Cloud library methods to retrieve and process messages
+ - Pub/Sub sends each message as an HTTP request to the subscriber at a preconfigured HTTP endpoint.
+
+ - push endpoints can be a load balancer or an app engine standard application
+    - the endpoint acknowledges the message by returning an HTTP success status code
+    - a failure response indicates that the message should be sent again.
+- Pub/Sub dynamically adjusts the rate of push requests based on the rate at which it receives successful responses.
+- You can configure a default acknowledgment deadline for push subscriptions
+- Pub/Sub will resend messages if the code doesn't acknowledge the message before the deadline.
+* Use the push subscription model in environments where Google Cloud dependencies such as credentials and the client library can't be configured or multiple topics must be processed by the same webhook.
+ideal when the HTTP endpoint will be invoked by Pub/Sub and other applications
+
+When executing environments for subscribers you can develop highly scalable subscribers with Cloud Functions or Dataflow.
+1. Cloud functions are triggered whenever a new message is received
+     - Enables you to implement a serverless approach and build highly scalable systems.
+2. Deploy your subscriber application on computing environments such as Compute Engine, Google Kubernetes Engine, or App Engine flexible environment.
+     - Multiple instances of your application can spin up and split the workload by processing the messages in the topic.
+         - each instance can automatically shut down when they're are very few messages to process.
+     - you can enable elastic scaling using Pub/Sub metrics that are published to Cloud Monitoring
+
