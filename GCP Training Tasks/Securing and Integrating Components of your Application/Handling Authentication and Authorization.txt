@@ -1,23 +1,23 @@
 IAM Concepts**************
-Cloud IAM lets you manage access control by defining who (memebers) has what access (the role for what resource)
-You can grant more granular access to Google Cloud resources using the security principle of least privilege. Only grant access to resourecs that are necessary.
+Cloud IAM lets you manage access control by defining who (members) has what access (the role for what resource)
+You can grant more granular access to Google Cloud resources using the security principle of least privilege. Only grant access to necessary resources.
 
 Member Types:
 -Google account
-    - Developer, Admin or a person who interacts with Google Cloud
-    - an email accociated with a google account such as gmail.com address can be an identity
+    - Developer, Admin, or a person who interacts with Google Cloud
+    - an email associated with a Google account such as a gmail.com address can be an identity
 -Service account
     - Belongs to an application instead of an individual and user
--Google group
+-Google Group
     - A name collection of Google accounts and service accounts.
-    - Convienient to apply an access policy to a collection of users
-    - No login credentials, you cannot use them to establish ideneity to make a request to access a resource.
+    - Convenient to apply an access policy to a collection of users
+    - No login credentials, you cannot use them to establish identity to request to access a resource.
 -Google Workspace domain
-    - Represents a vitual group of all the members in an organization
+    - Represents a virtual group of all the members of an organization
     - Google Workshop customers can associate their email accounts with an internet domain name, each email account takes the form username@yourdomain.com
     - Like groups, domains cannot be used to establish identity, but they enable convenient permission management.
 -Cloud Identity domain
-    - Represents a virtual group of all the members in an orgiization but doesn't provide access to Google Workshop applications and features
+    - Represents a virtual group of all the members in an organization but doesn't provide access to Google Workshop applications and features
 
 You can grant access to users for a Google Cloud Resource
 Resources:
@@ -60,3 +60,77 @@ Cloud Platform resources are organized hierarchically, where the organization no
   - Each resource has exactly one parent.
 
 IAM Best Practices.
+Use service accounts to authenticate your applications when invoking Google APis
+   Service accounts:
+     - Belong to your application or VM
+     - Used by your application to call Google API or service so users aren't directly involved
+     - Are identified by their unique email addresses
+     - Are associated with a key pair
+     - Can have up to 10 heys associated with them to facilitate key rotation (Done daily by Google)
+     - Are supported by all GCP APIs
+     - Enable authentication and authorization: you can assign specific IAM roles to a service account
+Use external keys for use from outside GCP 
+   External keys:
+     - Can be created for use from outside GCP
+     - Require that you be responsible for the security of the private key and other management operations such as key rotation
+     - Are manageable through the:
+         - IAM API
+         - gcloud command-line tool
+         - Service Accounts page in the GCP Console
+
+Steps to use a service account in your application
+1. Create the service via the console
+2. Generate and download your credentials file
+3. Set an environment variable to provide credentials to your application
+   
+   Linux or OS X:
+   export GOOGLE_APPLICATION=<path_to_service_account_file>
+   Windows:
+   set GOOGLE_APPLICATION_CREDENTIALS=<path_to_service_account_file>
+
+4. Authenticate your code with the default credentials
+
+   def implicit():
+       from google.cloud import storage
+
+       storage_client = storage.Client()
+
+       # Make an authenticated API request
+       buckets = list(storage_clicent.list_buckets())
+       print(buckets)
+**************************************************************
+Use Application Default Credentials (ADC) to authenticate between applications
+- check for GOOGLE_APPLICATION_CREDENTIALS environment variable
+- Checks for default service accounts
+- if 1 and 2 aren't found, an error is thrown
+*******************************************************
+Best practices when using Cloud IAM 
+- Follow the principle of least privilege
+- Rotate service account keys
+- Manager user-managed service account keys
+- Don't check in service account keys
+- Use Cloud Audit Logging and export logs to Cloud Storage
+- Set organization-level IAM policies
+- Grant roles to a Google group when possible.
+
+OAuth2.0, IAP, & Firebase Authentication ************
+Use OAuth 2.0 to access resources on behalf of a user
+    - Your application needs to access BigQuery datasets that belong to users.
+    - Your application needs to authenticate as a user to create projects on their behalf
+
+Identity -Aware Proxy (IAP)
+    - Controls access to your cloud applications running on Google Cloud
+    - Verifies a user's identity and Determines whether that user should be allowed to access the application
+
+Configure your firewall and load balancer to protect against traffic that doesn't come from the serving infrastructure
+Use signed headers or the App Engine standard environment Users API.
+
+Identity Platform provides authentication as a service
+ - Provides federated login that integrates with many common providers
+ - Used to provide sign-up and sign-in for your end users' applications.
+
+Difference between Identity Platform and Firebase Authentication
+ - Identity Platform offers additional capabilities for enterprise customers.
+ - Upgrade to Identity Platform does not present any issues for your apps which will continue to work with existing Firebase services
+ - Both support a collection of Client and Admin SDKs
+
