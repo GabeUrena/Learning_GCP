@@ -54,3 +54,57 @@ When executing environments for subscribers you can develop highly scalable subs
          - each instance can automatically shut down when they're are very few messages to process.
      - you can enable elastic scaling using Pub/Sub metrics that are published to Cloud Monitoring
 
+Use Pub/Sub for asynchronous processing and loose coupling.
+Example 
+                                       Pub/Sub   
+              order        +------------------------------+         
+Pulbisher Order service -> |Orders Topics -> Subscription | -> Subscriber Inentory Service
+                           +------------------------------+
+The order service acts as the publisher, It publishes messages that contain order information to the order topic and returns immediately
+The inventory service acts as the subscriber. It might even be down when the publisher sends messages
+The subscriber can start running a litter later and process the messages it is subscribed to.
+
+Cloud Pub/Sub enables you to use a topic as a buffer to hold data that is coming in rapidly.
+    - You might have multiple instances of a service generating large volumes of data, A downstream service that needs to process this data might become overwhelmed with the high velocity and volume of data
+        - To address this issue, instances of your data-generating service can act as publishers and publish the data to a Cloud Pub/Sub topic.
+        - Cloud Pub/Sub can reliably receive and store large volumes of rapidly incoming data.
+        - The downstream service can then act as a subscriber and consume the data as a reasonable pace.
+    - Your application can automatically scale up the number of instances of the subscriber to handle increased volumes of data
+
+The publisher can push messages to a centralized Cloud Pub/sub-topic
+Services that are interested in the information can simply subscribe to the topic.
+
+-Cloud pub/sub delivers each message at least once
+  - Subscribers can sometimes see duplicate messages
+-Implement your publisher and subscriber in such a way that the application can perform item-potent operations
+-The publisher can publish messages with a unique ID
+-Your subscriber can use Cloud Datastore, Cloud FireStore, or Cloud Bigtable to store information about messages that have already been processed.
+-Use the unique identifier as a Key
+
+Whenever a message is received, the subscriber can check previously saved messages to see whether the incoming message is new and needs to be processed
+If the message has already been processed, the subscriber can just discard the duplicate message.
+
+Cloud Pub/Sub provides a highly scalable messaging architecture
+  - Message ordering is not guaranteed
+* Design your application to reduce or even eliminate dependencies on message ordering.
+  - Message ordering is not relevant in use cases where your application is collecting statistics about the event
+    - You don't need to process the statistics for related events in order
+  - You don't need to be notified about the exact order of your contacts coming online if they all came on at the same time.
+  - There are scenarios in which the final order of messages is important, but the order in which the individual messages are processed is not important.
+      - Log events with time stamps may stream into the logging service from various sources.
+      - The order of processing each log event is not important, however, eventually, your system should enable you to view log events ordered by time stamp.
+
+There are scenarios where messages must be processed in the order in which they were published
+  - Financial transactions must be processed in order
+  - Online multiplayer games. (A player jumping over a wall, landing on an enemy, and collecting loot. Other players must see the same thing.)
+
+Implement ordered processing of messages:
+1. The subscriber knows the order in which messages must be processed.
+  - The publisher can publish messages with a unique ID
+  - Your subscriber can use Cloud Datastore to store information about messages that have been processed so far
+  - When a new message is received, the subscriber can check whether this message should be processed immediately or the unique ID indicates that there are pending messages that should be processed first
+2. The subscriber checks the oldest unacknowledged message in Cloud Monitoring metrics
+ - The subscriber can store all messages in a persistent data store
+ - It can check indistinct subscription oldest unacknowledged message metric that the Cloud Pub/Sub publishes to Stackdriver
+ - The subscriber can compare the time stamp of the oldest acknowledged message against the published time stamps of the messages in Cloud Datastore.
+ - All messages published before the oldest unacknowledged message are guaranteed to have been received so those messages can be removed from the persistent data store and processed in order.
