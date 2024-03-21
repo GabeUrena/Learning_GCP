@@ -1,0 +1,18 @@
+Google's Pretrained Machine Learning APIs
+Cloud Vision API enables you to perform complex image detection.
+Cloud Speech API enables developers to convert audio to text
+  - It handles 101 languages and variants to support your global user base
+  - You can transcribe the text of users dictating to an application's microphone, enable command and control through voice, transcribe audio files and more.
+Cloud Video Intelligence API enables you to search every moment of your video file to extract and understand the video's entitles at the shot, fram and video level
+  - Annotates videos stored in cloud storage and helps you identify key known entities of your video and when they occur within the video.
+Cloud Translation API enables you to translate an arbitrary string into any supported language.
+  - Translation API is highly responsive
+  - Websites and applications can use Translation API for fast, dynamic translation of text from a source language to a target language.
+Cloud Natural Language API enables you to extract information about entities such as people, places, and events that are mentioned in text documents, news articles or blog posts.
+  - You can use the API to understand sentiment about your product on social media or parse intent from customer conversations
+  - You can also use your data to build and train your machine learning models by using TensorFlow and the Cloud AI platform
+
+Invoke REST APIs to use machine learning APIs; no machine learning knowledge is required
+
+Vision API can categorize objects under labels and perform optical character recognition or OCR.
+
