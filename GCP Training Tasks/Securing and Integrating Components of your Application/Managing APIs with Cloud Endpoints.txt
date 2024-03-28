@@ -1,0 +1,20 @@
+Cloud Endpoints enables you to deploy and manage the API on Google Cloud
+API gateways enables clients to retreve data from multiple sercices with a single request
+  - Creates a layer of absteraction and insulates the clients from the details of an application that is partioned into micro services
+Cloud Endpoints can be used to implement API gateways.
+
+The APIs for your application can run on backends, such as App Engine, Google Kubernetes Engine, or GKE, or Compute Engine.
+
+For legacy applications that can be moved to the cloud, impliment APIs as an adapter layer or facade. Each consumer can
+  invoke these modern APIs instaeda of inoking outdated APIs using old protocols and disparate interfaces.
+  - Apigee API platform, you can design, secure, analyze, and scale your APIs, all while seamlessly leveraging your legacy backends.
+
+Cloud Endpoints provide the infrastructure support that you need to deploy and manage robust, secure, and scalable APIs
+  - Interface definition
+      - OpenAPI, gRPC API
+  - Authentication and authorization  
+      - Service-to-service authentication, User authentication
+  - Management and scalability
+      - Entensible Service Proxy, Service Management, Service Control
+  - Logging and Monitoring
+      - Cloud Logging, Cloud Trace
