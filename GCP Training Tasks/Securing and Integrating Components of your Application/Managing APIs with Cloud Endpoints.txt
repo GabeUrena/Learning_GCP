@@ -18,3 +18,80 @@ Cloud Endpoints provide the infrastructure support that you need to deploy and m
       - Entensible Service Proxy, Service Management, Service Control
   - Logging and Monitoring
       - Cloud Logging, Cloud Trace
+
+Cloud Endpoints supports REST APIs and gRPC APIs
+JSON/REST APIs
+- Popular and Easy to use
+- To enable Cloud Endpoints you must create the API configuration in a Yaml file, based on the OpenAPI specification
+
+gRPC APIs
+- Newer, Fast, Can generate client libraries for programming languages, Enables type safety
+- To enable Cloud Endpoints you must create your service definition by using protocol buffers, then create a service configura nbu using the gRPC API specification
+
+Cloud Endpoints for REST APIs
+Develop and deploy your API configuration and API backend
+
+Develop API backend > Develop API configuration > Deploy API configuration > Deploy API backend
+   
+    - After developing your backend, create an API configuration file that describes your Cloud Endpoints API
+    - Deploy the API configuration bu using the G Cloud Service Management deploy command.
+        - The G Cloud command returns the service configuration ID and service name. Specify the service configuration ID and service name in your API's backend configuration files, such as the app.yam file for App Engine flexible environment deployments.
+    - Deplpy backend 
+
+Use the OpenAPI specification as the interface Definition Language.
+API config is a Yaml file that describes the API using the API specification
+The open API specification and its extension enable you to describe the surface of the API and security definitions.
+    - You can specify security definitions for user authenticiation, and service to service authentication.
+Various tools are available to help you create and manage your open API specification
+
+
+Service Management API, Service Control API, and Entensible Service Proxy form the core of Cloud Endpoints.
+When you deploy the API config it is registered with the Service Management API and shared with the Extensible Service Proxy.
+Service Management uses the host valeue in your deployment config file to create a new Cloud Endpoint service with the name in the format shown here.
+      API Service Name:
+      [YOUR-API].endpoints.[YOUR-PROJECT-ID].cloud.goog
+This service name is created if it doesn't already exist.
+
+The Extensible Service proxy is an NGINX based proxy that runs in front of the API backend and injects Cloud Endpoints functionalities such as authentication, monitoring and logging.
+
+- Works with a service control API to check the request against the API configuratin and verify that the request can be passed through to the backend.
+
+Enable user authentication and service-to-service authentication
+After a user signs in, the authentication providers send a signed JSON web token, or JOT to Cloud Endpoints.
+
+For servicer to service authenticaiton, create a service account, use a Google ID token to sign the request.
+
+To restrinct access to your Cloud Endpoints API, you can assign identity and access management roles to specify users.
+    - You can grant access to a specific API, or to the entire Cloud project.
+
+You can deploy your API in multiple enviornments
+[Development] quiz-api.endpoints.jane-dev-project.cloud.goog/v1/extract
+[Staging] quiz-api.endpoints.staging-project.cloud.goog/v1/extract
+[Production Alpha] quiz-api.endpoints.prod-alpha-project.cloud.goog/v1/extract
+[Prodeuction] quiz-api.endpoints.prod-project.cloud.goog/v1/extract
+
+You can view error logs and metric from the Cloud Endpoints dashboard
+You can allow users to test and explore your API using an Endpoint Developer Portal
+
+Cloud Endpoints
+- Full control over the API Gateway
+- Uses gRPC
+x You must manage the lifecycle
+x You pay for Conpute Engine VMs
+x Service proxy required for services outside Google CLoud.
+
+API Gateway
+- Fully managed
+- Scalable and flexible deployment option
+- Relatively inexpensive
+- Uses gRPC
+x Less control than Cloud Endpoints
+x Service proxy requires for services outside Google Cloud
+
+Apigee API Platform
+- Fully featured API management platform 
+- Proxy APIs anwhere
+- Broad feature set
+x More expensive
+x Not appropriate for simplest API use cases
+
