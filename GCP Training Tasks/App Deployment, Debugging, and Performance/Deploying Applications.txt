@@ -49,4 +49,24 @@ Why use containers for deployment? ***************
 1. Simply deployment
 2. Rapid availability
 3. The ability to create microservices
+4. Testing is cheaper
+
+Why use Kubernetes?
+Automation
+      - Automates the deployment, scaling, load balancing, logging, monitoring, and other management features of containerized applications.
+
+Efficient
+      - Specifies CPU and memory requirements of containers, Kubernetes can efficiently pack containers and nodes to efficiently use compute nodes.
+
+Declarative Configuration
+      - You can configure the desired state you want to achieve.
+      - Rather than issuing a series of commands to achieve that desired state Kubernetes will make your system conform to that desired state. This greatly reduces the operational complexity of large systems.
+
+Self-healing
+      - Automatically replace containers that have failed or are failing a health check.
+      - This leads to many fewer middle-of-the-night pages for operations staff.
+      
+Google Kubernetes Engine (GKE) is Google Cloud's fully managed service for managing containers and the compute nodes they run on.
+
+Build Pipelines with Cloud Build and Terraform****************************
 
