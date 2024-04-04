@@ -1,1 +1,10 @@
 Deploying Applications Using Cloud Build, Container Registry, and Terraform **************
+
+Implement continuous integration and delivery for reliable releases
+Continuous Integration (CI)
+
+
+  - A developer workflow in which developers frequently pull from the main branch and commit their changes into a feature branch in a source code repository, such as Cloud Source Repository or github
+  - These commit triggers are built in a build system such as Jenkins or CircleCL
+  - The Build process creates a new application image by using Cloud Build and stores it in an artifact repository, such as Container Registry.
+
