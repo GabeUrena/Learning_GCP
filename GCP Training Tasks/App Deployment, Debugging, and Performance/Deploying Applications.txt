@@ -1,10 +1,52 @@
 Deploying Applications Using Cloud Build, Container Registry, and Terraform **************
 
 Implement continuous integration and delivery for reliable releases
+
 Continuous Integration (CI)
-
-
-  - A developer workflow in which developers frequently pull from the main branch and commit their changes into a feature branch in a source code repository, such as Cloud Source Repository or github
-  - These commit triggers are built in a build system such as Jenkins or CircleCL
+Feature Branch                             Development
+      CODE      >      BUILD      >          DEPLOY          >      TEST     
+Cloud Source        Cloud Build,        Spinnaker, Chef
+Repositories,       Jenkins, CircleCI   Puppet, Ansible,
+GitHub                                  Terraform
+BitBucket
+               | Store artifacts |
+               *Container registry*
+                
+  - A developer workflow in which developers frequently pull from the main branch and commit their changes into a feature branch in a source code repository, such as Cloud Source Repository or GitHub
+  - These commit triggers are built in a build system such as Jenkins or CircleCI
   - The Build process creates a new application image by using Cloud Build and stores it in an artifact repository, such as Container Registry.
+  - A deployment system, such as Spinnaker, deploys the artifacts in your cloud environment.
+      - You can use Terraform to stand up resources for the managed services that your application needs.
+          - For example, Create Cloud Storage buckets and Pub/Sub topics.
+  - After your application is deployed in your development environment, you can automatically run tests to verify your code.
+      - If all the tests pass, you can push charges from the feature branch to the main branch.
+      
+Implement continuous integration and delivery for reliable releases
+
+
+                              -------------| Store artifacts |
+                             /          / *Container Registry*
+Continuous Delivery (CD)    /          /
+Main/trunk                 /          /   Staging                            Production
+      Code      >      Build      >      Deploy      >      Test      >      Release      >      Monitor
+Cloud Source      Cloud Build,      Spinnaker, Chef,                    Spinnaker, Chef    Cloud
+Repositories,     Jenkins,          Puppet, Ansible,                    Puppet, Ansible,   Monitoring
+Github,           CircleCI          Terraform                           Terraform
+BitBucket
+
+Continuous Delivery is a workflow that is triggered when changes are pushed to the main branch in the repository
+  - The build system builds the code and creates application images,
+  - The deployment system deploys the application images to the staging environment and runs integration tests, performance tests, and more.
+  - If all tests pass, the build is tagged as a release candidate build. You can manually approve a release candidate build.
+  - This approval can trigger deployment to production environments as a canary or blue-green release.
+  - You can monitor the performance of your application in the production environment by using monitoring services, such as Cloud Monitoring.
+      - If the new deployment functions optimally, you can switch over your entire traffic to this new release. but if you discover problems, you can also quickly roll back to the last stable release.
+  - No manual approval process, the deployment system automatically deploys release candidates to the production environment.
+
+Container: An efficient way to isolate code and manage workloads (alternative to hardware virtualization)
+
+Why use containers for deployment? ***************
+1. Simply deployment
+2. Rapid availability
+3. The ability to create microservices
 
