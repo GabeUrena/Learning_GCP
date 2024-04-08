@@ -69,4 +69,32 @@ Self-healing
 Google Kubernetes Engine (GKE) is Google Cloud's fully managed service for managing containers and the compute nodes they run on.
 
 Build Pipelines with Cloud Build and Terraform****************************
+Cloud Build, is a fully managed service that enables you to set up Build pipelines to create a Docker container image for your application and push the image to a Google Cloud Container Registry.
+
+By using Container Registry in Cloud Build, you can create Build pipelines that are automatically triggered when you commit code to a repository.
+In Contrianer Registry, you can create a Build trigger that is executed based on a trigger type.
+A trigger type specifies whether a Build should be triggered based on commits to a particular branch in a repository or commits that contain a particular tag.
+- You must also create a BuIld configuration file that specifies the steps in the Build pipeline.
+Steps are analogous to commands or scripts that you execute to Build your application.
+- Each Build step is a Docker container that's invoked by Cloud Build when is executed.
+      - The step name identifies a container to invoke for the Build step
+- The image attribute contains the name of the container image to be created by this Build configuration
+
+Cloud Build enables you to specify different types of Source Repositories, tag container images to enable searches and create build steps that perform operations like downloading and processing data without even creating a container image.
+
+Build config can be specified in a Yaml or JSON format
+
+Terraform is an open-source tool that lets you provision Google Cloud resources
+ - Virtual machines, containers, storage, and networking, with declarative configuration files.
+HashiCorp configuration language or HCL allows for concise descriptions of resources using blocks, arguments, and expressions.
+The benefit of a declarative approach is that it allows you to specify what the configuration should be and lets the system figure out the steps to take.
+Unlike Cloud Shell, TerraForm deploys resources in parallel
+The TerraForm language is the user interface to declare resources.
+TerraForm configuration is a complete document in the TerraForm language that tells TerraForm how to manage a given collection of infrastructure.
+
+Use the Cloud Foundation Toolkit to optimize your Terraform deployment
+ - Reference template, which reflects Google Cloud best practices
+ - Repeatable and enterprise-ready
+ - Designed to meet compliance and security needs.
+ - Provides a consistent set of tools and patterns.
 
