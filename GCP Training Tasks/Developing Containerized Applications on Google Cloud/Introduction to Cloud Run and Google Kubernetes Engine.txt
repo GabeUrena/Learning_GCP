@@ -16,3 +16,8 @@ Cloud Run source-based workflow
 Cloud Run supports HTTPS
 - Provisions a valid TLS certification, and other configuration to support HTTPS requests.
 - Handles incoming requests, decrypts, and forwards them to your applciation.
+
+Application on Cloud Run must handle web requests
+- Cloud Run epects your contiainer to listen on port number 8080 to handle web requests
+    - Port 8080 is a configurable default, if this port is unabailable to your applciation, you can change the applicaiton's configuration to use a different port.
+- You dont need to provide an HTTPS server, Google's infrastructure handles that for you.
