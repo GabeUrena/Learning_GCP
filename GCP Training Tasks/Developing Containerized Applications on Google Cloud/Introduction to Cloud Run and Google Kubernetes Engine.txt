@@ -21,3 +21,7 @@ Application on Cloud Run must handle web requests
 - Cloud Run epects your contiainer to listen on port number 8080 to handle web requests
     - Port 8080 is a configurable default, if this port is unabailable to your applciation, you can change the applicaiton's configuration to use a different port.
 - You dont need to provide an HTTPS server, Google's infrastructure handles that for you.
+
+Running containers
+- You can develop your applications in any programming language and run them on Cloud Run, as long as they can be compiled to a 64-bit Linux binary, and packaged in a container image.
+
