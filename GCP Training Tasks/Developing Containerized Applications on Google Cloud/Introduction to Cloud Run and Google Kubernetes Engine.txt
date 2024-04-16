@@ -1,0 +1,18 @@
+Cloud Run
+A managed compute platform
+Runs containers on Google's infrastructure
+Supports source-based deployment that builds containers for you
+Build full-featured applications with other Google Cloud services
+
+Cloud Run developer workflow
+1. Code your application, it should start a server that listens for web requests
+2. Build and package your application into a container image
+3. Deploy the container image to Cloud Run
+
+Cloud Run source-based workflow
+1. Deploy your source code
+2. Using Buildpacks, Cloud Run builds your source and pageages the application along with it's dependencies into a container image
+
+Cloud Run supports HTTPS
+- Provisions a valid TLS certification, and other configuration to support HTTPS requests.
+- Handles incoming requests, decrypts, and forwards them to your applciation.
