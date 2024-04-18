@@ -31,3 +31,28 @@ Pricing model
 - The price of container time increases based on the number of vCPUs and memory allocated for the container.
 
 Features and use cases of Cloud Run
+Serving a REST API with Cloud Run
+- You can use the service to provide an API, a website, or a web application.
+    - If required, you can connect the service to a database to persist data handled by the API or web application.
+
+An e-commerce site on Cloud Run
+ - Enable Cloud CDN to improve performance
+ - Add Google Cloud Armor to filter malicious inbound traffic using content-based policies.
+In the backend, you can connect with a relational database, a Redis store for user sessions, and connect with third-party APIs.
+
+Microservices on Cloud Run
+- You can deploy and run an application that is composed of many microservices on Cloud Run
+- Services on Cloud Run can communicate with each other using REST APIs or gRPC.
+- Using Pub/Sub, you can send and receive asynchronous messages between services with guaranteed delivery. Pub/Sub is well integrated with Cloud Run using push subscriptions. Pub/Sub forwards and optionally authenticates messages as HTTP requests to the endpoint of your Cloud Run service.
+
+Event processing on Cloud Run
+- Cloud Run integrates with various Google Cloud services such as Cloud Storage, Cloud Build, Pub/Sub, Eventarc, and others that generate events from your cloud infrastructure.
+
+Scheduling a Cloud Run service with Cloud Scheduler
+- You can use Cloud Scheduler to securely trigger a Cloud Run service on a schedule. Cloud Scheduler is a fully managed cron job scheduler.
+    - Generating invoices, rebuilding a search index
+- The limitation of running a scheduled Job in the container itself is that the lifetime of a container is only guaranteed while it's handling requests. If you schedule tasks on a container to run later, the container might be shut down or stopped by the time the task has to run.
+
+Incremental application updates with service revisions
+
+
