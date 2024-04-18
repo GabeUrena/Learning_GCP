@@ -29,3 +29,5 @@ Pricing model
 - The Cloud Run pricing model is unique, you only pay for the system resources that are used while a container is handling requests. and when it's starting or shutting.
 -  Supports a pricing model that charges you for the entire container lifecycle with CPU always allocated to container instances even when there are no requests to your application.
 - The price of container time increases based on the number of vCPUs and memory allocated for the container.
+
+Features and use cases of Cloud Run
