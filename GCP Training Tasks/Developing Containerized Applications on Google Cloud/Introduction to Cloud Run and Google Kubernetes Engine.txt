@@ -1,5 +1,5 @@
 Cloud Run
-A managed compute platform
+A managed computing platform
 Runs containers on Google's infrastructure
 Supports source-based deployment that builds containers for you
 Build full-featured applications with other Google Cloud services
@@ -11,17 +11,21 @@ Cloud Run developer workflow
 
 Cloud Run source-based workflow
 1. Deploy your source code
-2. Using Buildpacks, Cloud Run builds your source and pageages the application along with it's dependencies into a container image
+2. Using Buildpacks, Cloud Run builds your source and packages the application along with its dependencies into a container image
 
 Cloud Run supports HTTPS
-- Provisions a valid TLS certification, and other configuration to support HTTPS requests.
-- Handles incoming requests, decrypts, and forwards them to your applciation.
+- Provisions a valid TLS certification, and other configurations to support HTTPS requests.
+- Handles incoming requests, decrypts, and forwards them to your application.
 
 Application on Cloud Run must handle web requests
-- Cloud Run epects your contiainer to listen on port number 8080 to handle web requests
-    - Port 8080 is a configurable default, if this port is unabailable to your applciation, you can change the applicaiton's configuration to use a different port.
-- You dont need to provide an HTTPS server, Google's infrastructure handles that for you.
+- Cloud Run expects your container to listen on port number 8080 to handle web requests
+    - Port 8080 is a configurable default, if this port is unavailable to your application, you can change the application's configuration to use a different port.
+- You don't need to provide an HTTPS server, Google's infrastructure handles that for you.
 
 Running containers
 - You can develop your applications in any programming language and run them on Cloud Run, as long as they can be compiled to a 64-bit Linux binary, and packaged in a container image.
 
+Pricing model
+- The Cloud Run pricing model is unique, you only pay for the system resources that are used while a container is handling requests. and when it's starting or shutting.
+-  Supports a pricing model that charges you for the entire container lifecycle with CPU always allocated to container instances even when there are no requests to your application.
+- The price of container time increases based on the number of vCPUs and memory allocated for the container.
