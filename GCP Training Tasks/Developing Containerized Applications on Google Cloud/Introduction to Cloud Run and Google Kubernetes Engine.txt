@@ -20,7 +20,7 @@ Build full-featured applications with other Google Cloud services
 *Application on Cloud Run must handle web requests
 - Cloud Run expects your container to listen on port number 8080 to handle web requests
     - Port 8080 is a configurable default, if this port is unavailable to your application, you can change the application's configuration to use a different port.
-- You don't need to provide an HTTPS server, Google's infrastructure handles that for you.
+- You don't need to provide an HTTPS server, Google's infrastructure handles that.
 
 *Running containers
 - You can develop your applications in any programming language and run them on Cloud Run, as long as they can be compiled to a 64-bit Linux binary, and packaged in a container image.
@@ -38,11 +38,11 @@ Serving a REST API with Cloud Run
 *An e-commerce site on Cloud Run
  - Enable Cloud CDN to improve performance
  - Add Google Cloud Armor to filter malicious inbound traffic using content-based policies.
-In the backend, you can connect with a relational database, a Redis store for user sessions, and connect with third-party APIs.
+In the backend, you can connect with a relational database, a Redis store for user sessions, and third-party APIs.
 
 *Microservices on Cloud Run
 - You can deploy and run an application that is composed of many microservices on Cloud Run
-- Services on Cloud Run can communicate with each other using REST APIs or gRPC.
+- Services on Cloud Run can communicate using REST APIs or gRPC.
 - Using Pub/Sub, you can send and receive asynchronous messages between services with guaranteed delivery. Pub/Sub is well integrated with Cloud Run using push subscriptions. Pub/Sub forwards and optionally authenticates messages as HTTP requests to the endpoint of your Cloud Run service.
 
 *Event processing on Cloud Run
@@ -60,18 +60,18 @@ A service revision is immutable and cannot be modified. If you make a change to 
 
 A service revision consists of:
  - Your container image
- - The service configuration that includes settings such as enviornment variables, memory limits, and other configuration values.
+ - The service configuration that includes settings such as environment variables, memory limits, and other configuration values.
 
 Reduce the impact of request processing failures by splitting request traffic between the new and previous revisions of your service, by specifying the percentage of requests that should be sent to the new revision. 
-  - This lets your roll back to a previous stable revision if there is a high rate of request failures, or gradually send 100% of request traffic to the new revision.
+  - This lets you roll back to a previous stable revision if there is a high rate of request failures, or gradually send 100% of request traffic to the new revision.
 
 *Automatic Scaling with Cloud Run
-Cloud run automatically increase the number of container instances of a service revision when necessary. This feature is known as autoscaling.
+Cloud run automatically increases the number of container instances of a service revision when necessary. This feature is known as autoscaling.
 
-Requests to a service revision are distributed across the group of container instances.
+Requests for a service revision are distributed across the group of container instances.
 - If all container instances are busy, Cloud Run adds additional instances.
 - When demand decreases, Cloud Run stops sending traffic to some instances and shuts them down
-- Note that a container instance can receive many requests at the same time with the concurrency setting, you can set the max number of requests that can be sent in parallel to a given container instance.
+- Note that a container instance can receive many requests at the same time with the concurrency setting, you can set the maximum number of requests that can be sent in parallel to a given container instance.
 
 In addition to the rate of incoming requests to your service, the number of container instances is impacted by:
 - The CPU utilization of existing instances when they are processing requests (with a target of 60% of utilization)
@@ -79,9 +79,9 @@ In addition to the rate of incoming requests to your service, the number of cont
 - The minimum and maximum number of container instances setting
 
 *Regions and zones
-- A region consists of three or more zones. Zones and regions are logical abstractions of underlying physical resources that are provided in one or more data centers. An example of a region is us-central1 in lowa, North America.
-- A zone is a deployment area of cloud resources within a region. Zones are considered to sigle failure domains within a region
-- For high availability, Cloud Run distributes your containers over multiple zones in a region, making your applicaiton resilient against the failure of a zone.
+- A region consists of three or more zones. Zones and regions are logical abstractions of underlying physical resources that are provided in one or more data centers. An example of a region is US-Central1 in Iowa, North America.
+- A zone is a deployment area of cloud resources within a region. Zones are considered to be single failure domains within a region
+- For high availability, Cloud Run distributes your containers over multiple zones in a region, making your application resilient against the failure of a zone.
 
 *Global Load Balancing
 Cloud Run integrates with the Google Cloud external HTTP(S) global load balancer (GLB), which lets you expose a single, global IP address in front of multiple, regional Cloud Run services.
@@ -89,8 +89,38 @@ Cloud Run integrates with the Google Cloud external HTTP(S) global load balancer
 The global load balancer routes requests from a client to the region closest to them. In addition to improving application availability, the GLB decreases latency for clients worldwide.
 
 *Application portability
-1. A container image contains your applciation and everything that your application needs to run.
-2. Containers are inherently portable and run in any container-based enviornment.
-3. The Cloud Run platform is comatible with Knative, which implements and the same container runtime contract as Cloud Run.
+1. A container image contains your application and everything that your application needs to run.
+2. Containers are inherently portable and run in any container-based environment.
+3. The Cloud Run platform is compatible with Knative, which implements the same container runtime contract as Cloud Run.
 
+*Google Kubernetes Engine (GKE)
+ - Fully managed Kubernetes service. Kubernetes is an open-source container orchestration system for automating software deployment, scaling, and management. Designed by Google and now maintained by the Cloud Native Computing Foundation (CNCF)
+ - Provides a managed environment for deploying, managing, and scaling your containerized applications on Google infrastructure.
+ - The GKE environment consists of multiple machines or nodes that are grouped to form a cluster.
 
+*Benefits of Google Kubernetes Engine (GKE)
+- Easy cluster creation and management
+- Load balancing
+- Automatic scaling
+- Automatic upgrades of your cluster node software
+- Automatic repair to maintain node health and availability
+- Logging and monitoring with Google Cloud's operations suite for cluster visibility                                            
+
+*GKE Cluster architechture - Control plane
+A GKE cluster consists of one or more control planes and worker machines called nodes
+- Control planes and nodes make up the Kubernetes cluster orchestration system
+- GKE manages the entire underlying infrastructure of clusters, including the control plane, nodes, and all system components.
+
+The control plane manages everything that runs on all the cluster's nodes. The control plane schedules container workloads and manages the workloads' lifecycle, scaling, and upgrades. The control plane also manages network and storage resources for those workloads. The control plane and nodes communicate with each other using Kubernetes APIs.
+
+The control plane is the unified endpoint for your cluster and runs the Kubernetes API server process (Kube-apiserver) to handle API requests. To interact with the control plane, you make Kubernetes API calls using.
+- HTTP/gRPC requests
+- Command-line clients such as kubectl, or the Google Cloud console.
+
+The API server process is the hub for all communication for the cluster. All internal cluster components such as nodes, system processes, and application controllers act as clients of the API server.
+
+*GKE Cluster architecture - Nodes
+- Compute Engine virtual machines that run your containerized application and other workloads
+A node runs the services necessary to support the containers that make up your cluster workloads, these include the runtime and the Kubernetes node agent, which communicates with the control plane and is responsible for starting and running containers that are scheduled on the node.
+
+A pod is the smallest deployable compute unit that you can create and manage in Kubernetes. A pod is a group of one or more containers with shared storage and network resources and a specification for how to run the containers.
